@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="utf-8">
+	<title> Vue.js V2 V-IF V-ELSE TEMPLATE </title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+
+	<div id="main">
+		<!--   -->
+		<div class="container">
+		<div class="row">
+			<div class="col-md-5">
+				<h3 v-if="!message"> Escribe tu sugerencia</h3> <!--si no hay mensajes va a mostrar ese texto   -->
+				<h3 v-else> Presiona enter para enviar</h3>
+				<textarea v-model="message" class="form-control"></textarea>
+
+		<!--otro ejemplo 
+		** si la condicion es unica si no necesitamos un ELSE, podemos utilizar V-SHOW
+		** si necesitamos un IF y ELSE entonces V-IF (V-SHOW TARDA UN POCO MAS) 
+		-->
+			<template v-if="!message">
+				<!--Bloque completo que va a utilizar de HTML que va a utilizar una unica condicion   -->
+				<h3> Escribe tu sugerencia</h3> 
+				<p> El equipo de soporte responde a maximo 24 horas </p>
+				<p> <em> Podrias usar twitter para comunicarte </em> </p>
+
+			</template>
+				<h3 v-else> Presiona enter para enviar</h3>
+				<textarea v-model="message" class="form-control"></textarea>
+
+
+			</div>
+			<div class="col-md-7">
+				<h3> JSON</h3>
+				<pre>
+					{{ $data }}
+				</pre>
+
+			</div>
+			
+			
+		</div>
+	 </div>
+
+	
+	</div>
+
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.10/vue.js"></script>
+
+	<script type="text/javascript">
+		new Vue({
+			el: '#main',
+			data: {
+				message: ''
+			}
+
+		});
+
+	</script>
+
+</body>
+</html>

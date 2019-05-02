@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="utf-8">
+	<title> Vue.js V2 V-BIND </title>
+	<!-- Bind enlazarr -->
+</head>
+<body>
+
+	<div id="main">
+		<input type="text" v-model="info">
+		<p v-bind:title="info"> Texto de relleno ... {{ info }} </p> 
+		<!-- Una forma de enlazar, es una manera de utilizar la tecnologia BIND: las formas de enlazar para modificar
+			el contenido de un atributo y al mismo tiempo mostrar en otro lado sin programar nada adicional el cambio de ese dato.  -->
+
+	</div>
+
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.10/vue.js"></script>
+
+	<script type="text/javascript">
+		new Vue({
+			el: '#main',
+			data: {
+				info: ''
+			}
+
+
+		});
+
+	</script>
+
+</body>
+</html>

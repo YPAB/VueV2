@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="utf-8">
+	<title> Vue.js V2 Componentes </title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+
+	<div id="main" class="container">
+		<div class="row">
+				<div class="col-sm-4">
+		
+					<h2> Album</h2>
+						<common-list v-bind:lists="albums"> </common-list>
+				</div>
+
+				<div class="col-sm-4">
+		
+					<h2> Post </h2>
+						<common-list v-bind:lists="posts"> </common-list>
+				</div>
+
+				<div class="col-sm-4">
+		
+					<h2> Fotos </h2>
+						<common-list v-bind:lists="fotos"> </common-list>
+				</div>
+				<div class="col-sm-12">
+		
+					<h2> JSON </h2>
+						<pre>
+							{{ $data }}
+						</pre>
+				</div>
+			</div>
+		</div>
+	
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.10/vue.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
+
+	<script type="text/javascript">
+		Vue.component('common-list',{
+			props : ['lists'],
+			template : `<ul class="list-group">
+							<li v-for="item in lists" class="list-group-item">
+								{{ item.title}}
+
+							</li>
+							
+						</ul>`,
+
+		});
+
+		var urlPosts = 'https://jsonplaceholder.typicode.com/posts';
+		var urlAlbums = 'https://jsonplaceholder.typicode.com/albums';
+
+		new Vue({
+			el: '#main',
+			created: function(){
+
+				this.getPosts(),
+				this.getAlbums()
+			},
+
+
+			data: {
+				posts: [],
+				albums: [],
+				fotos : [
+					{title: 'foto 1'},
+					{title: 'foto 2'},
+					{title: 'foto 3'},
+
+				]
+				
+			},
+
+			methods: {
+				getPosts: function (){
+					axios.get(urlPosts).then(response => {
+						this.posts= response.data
+
+					});
+				},
+				getAlbums: function (){
+					axios.get(urlAlbums).then(response => {
+						this.albums= response.data
+
+					});
+				}
+			}
+		});
+
+
+
+	</script>
+
+</body>
+</html>

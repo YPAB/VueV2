@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="utf-8">
+	<title> Vue.js V2 AJAX </title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	
+</head>
+<body>
+
+	<div id="main" class="container">
+		<div class="row">
+			<div class="col-sm-6">
+				<h1> Lista VUE.JS - AJAX axios </h1>
+				<ul class="list-group">
+					<li v-for="item in lists" class="list-group-item">
+						{{item.name}}
+				
+					</li>
+
+				</ul>
+
+			</div>
+			
+				<div class="col-sm-6">
+				<h1> JSON </h1>
+				<pre>
+					
+					{{ $data | json }}  
+					<!-- nOS MUESTRA COMO ESTAN LLEGANDO LOS DATOS, PARA LUEGO DARLE FORMATO -->
+				</pre>
+				
+			</div>
+
+		</div>
+	
+
+	</div>
+
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.10/vue.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script><!-- Importamos el enlace de cnd.com para trabajar con ajax -->
+
+
+	<script type="text/javascript">
+		//var urlUsers = 'https://randomuser.me/api/?results=10';   ES OTRA URL DONDE SE PUEDE CONSUMIR API
+		var urlUsers = 'https://jsonplaceholder.typicode.com/users'; // consumo API  de una pagina que sirve para probar nuetra aplicacion VUE.JS
+		new Vue({
+			el: '#main',
+
+			created: function (){
+				this.getUsers();
+			},
+
+			data: {
+				lists: []
+			},
+
+			methods: {
+				getUsers: function(){
+					axios.get(urlUsers).then(response => {
+						this.lists = response.data
+
+
+						});
+
+				}
+			}
+			
+
+
+		});
+
+	</script>
+
+</body>
+</html>
